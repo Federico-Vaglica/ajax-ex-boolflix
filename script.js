@@ -1,24 +1,33 @@
 $(document).ready(function(){
 
-    var source = $('#day-template').html();
-    var template = Handlebars.compile(source);
-    var myMovie = $('input').val();
 
     
     
     $("button").on("click", function(){
-        insertMovie(myMovie) 
+        insertMovie();
+        $('input').val('');
     })
 
 
     $('input').on('keypress',function(a) {
         if(a.which == 13 || a.keyCode == 13) {
+            insertMovie() 
             $('input').val('');
-            insertMovie(myMovie) 
         }
     });
     
-    function insertMovie (dati){
+
+
+
+
+
+    function insertMovie (){
+
+        var source = $('#day-template').html();
+        var template = Handlebars.compile(source);
+
+        var dati = $('input').val();
+        $('.movies').empty();
         $.ajax({
             url: 'https://api.themoviedb.org/3/search/movie',
             method: 'GET',
