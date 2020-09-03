@@ -127,7 +127,8 @@ $(document).ready(function(){
      /*Funzione per printare le flag , con la possibilita di avere piu bandiere per piu lingua , se dovesse esserci la necessita sarebbe facile aggiungerne altre*/ 
      function printFlag(lingua) {
 
-        var languages = ['it','en','ja','es','de','fr','sv'];
+        var languages=[];
+        languages.push(lingua);
 
         if (languages.includes(lingua)) {
             return '<img src="img/' + lingua + '.svg"' +' '+'alt="'+ lingua + ' '+ 'flag">';
