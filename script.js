@@ -30,12 +30,12 @@ $(document).ready(function(){
         var apiUrl = 'https://api.themoviedb.org/3/search/';
         var arrayApiUrl = [
             {
-                type: 'movie',
-                url: apiUrl + 'movie'
-            },
-            {
                 type: 'tv',
                 url: apiUrl + 'tv'
+            },
+            {
+                type: 'movie',
+                url: apiUrl + 'movie'
             }
         ];
         arrayApiUrl.forEach(function(element){
