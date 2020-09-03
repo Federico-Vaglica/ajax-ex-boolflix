@@ -124,7 +124,7 @@ $(document).ready(function(){
         return stars;
     }
 
-     /*Funzione per printare le flag , con la possibilita di avere piu bandiere per piu lingua , se dovesse esserci la necessita sarebbe facile aggiungerne altre*/ 
+     /*Funzione per printare le flag , con la possibilita di avere piu bandiere per le lingue , se dovesse esserci la necessita basterebbe aggiunger il file della bandiera corrispondente*/ 
      function printFlag(lingua) {
 
         var languages=[];
