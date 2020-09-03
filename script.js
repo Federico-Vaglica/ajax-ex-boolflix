@@ -124,20 +124,20 @@ $(document).ready(function(){
         return stars;
     }
 
-     /*Funzione per printare le flag(ancora da modificare per essere riutilizzabile)*/ 
+     /*Funzione per printare le flag , con la possibilita di avere piu bandiere per piu lingua , se dovesse esserci la necessita sarebbe facile aggiungerne altre*/ 
      function printFlag(lingua) {
-        var italianFlag = '<img class="flag" src="img/it.svg" alt="italian flag">';
-        var englishFlag = '<img class="flag" src="img/en.svg" alt="england flag">';
-        console.log(lingua)
 
-        if(lingua == 'it') {
-            return italianFlag;
-        } else if (lingua == 'en') {
-            return englishFlag;
-        } else {
+        var languages = ['it','en','ja','es','de','fr','sv'];
+
+        if (languages.includes(lingua)) {
+            return '<img src="img/' + lingua + '.svg"' +' '+'alt="'+ lingua + ' '+ 'flag">';
+        }  else {
             return lingua;
-        }
-    };
+        }   
+    }
 });
+
+
+
 
    

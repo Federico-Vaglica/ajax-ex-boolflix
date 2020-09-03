@@ -1,0 +1,34 @@
+<?xml version="1.0"?><svg width="399.51453" height="255.45679" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>flagge_netherlands</title>
+ <defs>
+  <filter id="filter3853" x="-0.072026" width="1.144051" y="-0.123213" height="1.246425" color-interpolation-filters="sRGB">
+   <feGaussianBlur stdDeviation="10.406592" id="feGaussianBlur3855"/>
+  </filter>
+  <linearGradient id="linearGradient4294">
+   <stop offset="0" id="stop4312" stop-color="#b3b3b3"/>
+   <stop id="stop4338" offset="0.069397" stop-color="#cccccc"/>
+   <stop id="stop4336" offset="0.161921" stop-color="#ffffff"/>
+   <stop id="stop4334" offset="0.261739" stop-color="#ffffff"/>
+   <stop id="stop4332" offset="0.387998" stop-color="#ffffff"/>
+   <stop id="stop4330" offset="0.522023" stop-color="#cccccc"/>
+   <stop id="stop4328" offset="0.680804" stop-color="#ffffff"/>
+   <stop id="stop4326" offset="0.785337" stop-color="#dfdfdf"/>
+   <stop id="stop4324" offset="0.900892" stop-color="#cccccc"/>
+   <stop id="stop4298" offset="1" stop-color="#ffffff"/>
+  </linearGradient>
+  <linearGradient id="linearGradient4192-7">
+   <stop id="stop4194-7" offset="0" stop-color="#d60021"/>
+   <stop id="stop4196-3" offset="1" stop-color="#000000"/>
+  </linearGradient>
+  <linearGradient xlink:href="#linearGradient4294" id="linearGradient3869" x1="-0.036642" y1="0.904489" x2="1.183749" y2="0.154084"/>
+  <linearGradient xlink:href="#linearGradient4192-7" id="linearGradient3875" x1="0.814321" y1="0.654965" x2="-0.531678" y2="1.019266"/>
+ </defs>
+ <metadata id="metadata4777">image/svg+xml</metadata>
+ <g>
+  <title>Layer 1</title>
+  <path id="path3847" d="m26.376011,27.728029l346.762783,-1.352018l0,202.705013l-342.704803,0l-4.05798,-201.352995z" filter="url(#filter3853)" stroke-width="1px" stroke="#000000" fill="#000000"/>
+  <path d="m29.7374,16.6064l336.430599,0.402901l0.73999,205.004707c0,0 -113.454987,-0.081009 -171.273987,0c-57.544998,0.079987 -165.116602,0 -165.116602,0l-0.780001,-205.407608l0,0z" id="path4498" fill="url(#linearGradient3869)"/>
+  <path d="m29.043327,17.207716l111.884468,0l0,205.667635l-111.884468,0l0,-205.667635z" fill="#00007f" id="svg_2"/>
+  <path transform="rotate(-180, 311.484, 119.545)" id="svg_6" d="m255.54248,16.709908l111.88446,0l0,205.667641l-111.88446,0l0,-205.667641z" fill="url(#linearGradient3875)"/>
+ </g>
+</svg>
