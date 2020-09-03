@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 
 
-
+/*****************************Funzioni***************************************/
 
     function ricercaApi (){
 
@@ -61,7 +61,7 @@ $(document).ready(function(){
         });
       }
 
-
+    /*Funzione che clona i template rispetto alle chiamate ajax*/
       function printMovie (a,tipo){
 
         var source = $('#day-template').html();
@@ -94,7 +94,7 @@ $(document).ready(function(){
         }
       }
 
-
+/*Se non sono presenti risultati*/
       function noResults(tipo) {
         var source = $('#noResults').html();
         var template = Handlebars.compile(source);
@@ -107,7 +107,7 @@ $(document).ready(function(){
         $('.movies').append(html);
       }
 
-
+/* Funziona Reteo Stars*/
       function printStars(val) {
         var toStarsRating = Math.ceil(val / 2);
         var starsHtml = '';
@@ -123,19 +123,21 @@ $(document).ready(function(){
         }
         return starsHtml;
     }
+
+     /*Funzione per printare le flag(ancora da modificare per essere riutilizzabile)*/ 
+     function printFlag(lingua) {
+        var italianFlag = '<img class="flag" src="img/it.svg" alt="italian flag">';
+        var englishFlag = '<img class="flag" src="img/en.svg" alt="england flag">';
+        console.log(lingua)
+
+        if(lingua == 'it') {
+            return italianFlag;
+        } else if (lingua == 'en') {
+            return englishFlag;
+        } else {
+            return lingua;
+        }
+    };
 });
 
-
-function printFlag(lingua) {
-    var italianFlag = '<img class="flag" src="img/it.svg" alt="italian flag">';
-    var englishFlag = '<img class="flag" src="img/en.svg" alt="england flag">';
-    console.log(lingua)
-
-    if(lingua == 'it') {
-        return italianFlag;
-    } else if (lingua == 'en') {
-        return englishFlag;
-    } else {
-        return lingua;
-    }
-};
+   
