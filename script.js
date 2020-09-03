@@ -109,19 +109,19 @@ $(document).ready(function(){
 
 /* Funziona Reteo Stars*/
       function printStars(val) {
-        var toStarsRating = Math.ceil(val / 2);
-        var starsHtml = '';
+        var starsRating = Math.ceil(val / 2);
+        var stars = '';
         var fullStar = '<i class="fas fa-star"></i>';
         var emptyStar = '<i class="far fa-star"></i>';
     
         for(var i = 0; i < 5; i++) {
-            if(toStarsRating > i) {
-                starsHtml += fullStar;
+            if(starsRating > i) {
+                stars += fullStar;
             } else {
-                starsHtml += emptyStar
+                stars += emptyStar
             };
         }
-        return starsHtml;
+        return stars;
     }
 
      /*Funzione per printare le flag(ancora da modificare per essere riutilizzabile)*/ 
