@@ -4,14 +4,14 @@ $(document).ready(function(){
     
     
     $("button").on("click", function(){
-        insertMovie();
+        ricercaApi();
         $('input').val('');
     })
 
 
     $('input').on('keypress',function(a) {
         if(a.which == 13 || a.keyCode == 13) {
-            insertMovie() 
+            ricercaApi() 
             $('input').val('');
         }
     });
@@ -21,45 +21,72 @@ $(document).ready(function(){
 
 
 
-    function insertMovie (){
 
-       
+
+    function ricercaApi (){
 
         var dati = $('input').val();
         $('.movies').empty();
-        $.ajax({
-            url: 'https://api.themoviedb.org/3/search/movie',
-            method: 'GET',
-            data: {
-                'api_key': 'd5e76e32726c06432277b9f07da06085',
-                'query': dati,
-                'language': 'it-IT'
+        var apiUrl = 'https://api.themoviedb.org/3/search/';
+        var arrayApiUrl = [
+            {
+                type: 'movie',
+                url: apiUrl + 'movie'
             },
-            success: function(a){
-                if (a.total_results > 0){
-                    printMovie(a.results);
-                }else {
-                    noResults();
-                }
-            },
-            error: function(){
-              console.log('Errore');
+            {
+                type: 'tv',
+                url: apiUrl + 'tv'
             }
-          });
+        ];
+        arrayApiUrl.forEach(function(element){
+            $.ajax({
+                url: element.url,
+                method: 'GET',
+                data: {
+                    'api_key': 'd5e76e32726c06432277b9f07da06085',
+                    'query': dati,
+                    'language': 'it-IT'
+                },
+                success: function(a){
+                    if (a.total_results > 0){
+                        printMovie(a.results,element.type);
+                    }else {
+                        noResults(element.type);
+                    }
+                },
+                error: function(){
+                  console.log('Errore');
+                }
+              });
+        });
       }
 
 
-      function printMovie (a){
+      function printMovie (a,tipo){
 
         var source = $('#day-template').html();
         var template = Handlebars.compile(source);
         
-        for ( var i = 0; i < a.length; i++ ){                                        
+        for ( var i = 0; i < a.length; i++ ){ 
+            var selezionato = a[i];
+            var titolo;
+            var titoloOriginale;
+            var tipologia;
+                if(tipo === 'tv'){
+                    titolo = selezionato.name;
+                    titoloOriginale = selezionato.original_name;
+                    tipologia = 'Serie Tv'
+                } else {
+                    titolo = selezionato.title;
+                    titoloOriginale = selezionato.original_title;
+                    tipologia = "Film";
+                }                                      
             var thisMovie={
-                titolo: a[i].title,
-                titoloOriginale: a[i].original_title,
-                lingua: a[i].original_language,
-                voto: a[i].vote_average
+                titolo: titolo,
+                titoloOriginale: titoloOriginale,
+                lingua: printFlag(selezionato.original_language),
+                voto: printStars(selezionato.vote_average),
+                tipo : tipologia
             }
             console.log(thisMovie)
             var html = template(thisMovie);
@@ -68,15 +95,47 @@ $(document).ready(function(){
       }
 
 
-      function noResults() {
+      function noResults(tipo) {
         var source = $('#noResults').html();
         var template = Handlebars.compile(source);
 
         var context = {
-            noResults: 'Non ci sono risultati'
+            noResults: 'Non ci sono risultati nella categoria ' + tipo
         }
 
         var html = template(context);
         $('.movies').append(html);
       }
+
+
+      function printStars(val) {
+        var toStarsRating = Math.ceil(val / 2);
+        var starsHtml = '';
+        var fullStar = '<i class="fas fa-star"></i>';
+        var emptyStar = '<i class="far fa-star"></i>';
+    
+        for(var i = 0; i < 5; i++) {
+            if(toStarsRating > i) {
+                starsHtml += fullStar;
+            } else {
+                starsHtml += emptyStar
+            };
+        }
+        return starsHtml;
+    }
 });
+
+
+function printFlag(lingua) {
+    var italianFlag = '<img class="flag" src="img/it.svg" alt="italian flag">';
+    var englishFlag = '<img class="flag" src="img/en.svg" alt="england flag">';
+    console.log(lingua)
+
+    if(lingua == 'it') {
+        return italianFlag;
+    } else if (lingua == 'en') {
+        return englishFlag;
+    } else {
+        return lingua;
+    }
+};
