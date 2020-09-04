@@ -137,7 +137,7 @@ $(document).ready(function(){
         languages.push(lingua);
 
         if (languages.includes(lingua)) {
-            return '<img src="img/' + lingua + '.svg"' +' '+'alt="'+ lingua + ' '+ 'flag">';
+            return '<img class="flag" src="img/' + lingua + '.svg"' +' '+'alt="'+ lingua + ' '+ 'flag">';
         }  else {
             return lingua;
         }   

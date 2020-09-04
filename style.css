@@ -1,8 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
 body{
     background-color: aquamarine;
 }
 
-img {
+
+/*Nav Bar*/
+
+.navBar {
+    background-color: black;
+    width: 100vw;
+    height: 70px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 100%;
+    width: 15%;
+    display: contents;
+}
+
+.bookflix{
+    max-width: 90%;
+    max-height: 70%;
+}
+
+
+.search {
+    width: 100px;
+    height: 40px;
+    background-color: red;
+    color: whitesmoke;
+    font-weight: bolder;
+    font-size: larger;
+    border: 0px red;
+    border-radius: 5px;;
+}
+
+.input-search {
+    width: 200px;
+    height: 40px;
+    border: 0px white;
+    border-radius: 5px;;
+
+    
+}
+
+/*Body*/
+
+.movies {
+    width: 90vw;
+    min-height: calc( 90vh - 70px );
+    background-color: yellow;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.movie {
+    width: 200px;
+    height: 400px;
+    background-color: violet;
+}
+
+.flag {
     width :14px;
     height: 14px;
 }
