@@ -49,7 +49,7 @@ $(document).ready(function(){
                 },
                 success: function(a){
                     if (a.total_results > 0){
-                        printMovie(a.results,element.type);
+                        printMovieSeries(a.results,element.type);
                     }else {
                         noResults(element.type);
                     }
@@ -62,7 +62,7 @@ $(document).ready(function(){
       }
 
     /*Funzione che clona i template rispetto alle chiamate ajax*/
-      function printMovie (a,tipo){
+      function printMovieSeries (a,tipo){
 
         var source = $('#day-template').html();
         var template = Handlebars.compile(source);
@@ -114,7 +114,7 @@ $(document).ready(function(){
         var stars = '';
         var fullStar = '<i class="fas fa-star"></i>';
         var emptyStar = '<i class="far fa-star"></i>';
-        var halfStar = '<i class="fas fa-star-half-alt"></i>'
+        var halfStar = '<i class="fas fa-star-half-alt"></i>';
     
         for(var i = 0; i < 5; i++) {
             if(val > i) {
