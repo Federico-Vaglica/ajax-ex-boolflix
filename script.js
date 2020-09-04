@@ -109,15 +109,21 @@ $(document).ready(function(){
 
 /* Funziona Reteo Stars*/
       function printStars(val) {
-        val = Math.ceil(val / 2);
+        var resto = val % 2;
+        val = Math.floor(val / 2);
         var stars = '';
         var fullStar = '<i class="fas fa-star"></i>';
         var emptyStar = '<i class="far fa-star"></i>';
+        var halfStar = '<i class="fas fa-star-half-alt"></i>'
     
         for(var i = 0; i < 5; i++) {
             if(val > i) {
                 stars += fullStar;
-            } else {
+            } else if (resto != 0){
+                stars += halfStar;
+                resto = 0 ;
+            }
+            else {
                 stars += emptyStar
             };
         }
