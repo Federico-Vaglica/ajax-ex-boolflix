@@ -6,6 +6,7 @@ $(document).ready(function(){
     $("button").on("click", function(){
         ricercaApi();
         $('input').val('');
+        
     })
 
 
@@ -49,6 +50,7 @@ $(document).ready(function(){
                 },
                 success: function(a){
                     if (a.total_results > 0){
+                        $(".noResult").empty();
                         printMovieSeries(a.results,element.type);
                     }else {
                         noResults(element.type);
@@ -86,9 +88,12 @@ $(document).ready(function(){
                 titoloOriginale: titoloOriginale,
                 lingua: printFlag(selezionato.original_language),
                 voto: printStars(selezionato.vote_average),
-                tipo : tipologia
+                tipo : tipologia,
+                poster: poster(selezionato.poster_path),
+                personaggi: getCharacters(selezionato.id),
+                recensione: selezionato.overview.substr(0,100),
             }
-            console.log(thisMovie)
+            // console.log(selezionato.id);
             var html = template(thisMovie);
             $('.movies').append(html);
         }
@@ -98,13 +103,14 @@ $(document).ready(function(){
       function noResults(tipo) {
         var source = $('#noResults').html();
         var template = Handlebars.compile(source);
+        
 
         var context = {
             noResults: 'Non ci sono risultati nella categoria ' + tipo
         }
 
         var html = template(context);
-        $('.movies').append(html);
+        $('.noResult').append(html);
       }
 
 /* Funziona Reteo Stars*/
@@ -142,9 +148,60 @@ $(document).ready(function(){
             return lingua;
         }   
     }
+
+    function poster(poster){
+        var img;
+
+        if (poster == null) {
+            img = 'img/no-poster.jpg'
+        } else {
+            img = 'https://image.tmdb.org/t/p/w500' + poster;
+        }
+
+        return img;
+    }
+
+
+    function getCharacters(id){
+        var apiUrl = 'https://api.themoviedb.org/3/';
+        var arrayApiUrl = [
+            {
+                url: apiUrl + 'tv/' + id + '/credits'
+            },
+            {
+                url: apiUrl + 'movie/' + id + '/credits'
+            }
+        ];
+            arrayApiUrl.forEach(function(element){
+                $.ajax({
+                    url: element.url,
+                    method: 'GET',
+                    data: {
+                        'api_key': 'd5e76e32726c06432277b9f07da06085',
+                    },
+                    success: function(a){
+                        ottieniNomi(a.cast);
+                    },
+                    error: function(){
+                      console.log('Errore');
+                    }
+                  });
+            });
+
+            function ottieniNomi(a){
+                var personaggi = [];
+                
+                for(var i=1; i< a.length; i++){
+                    personaggi.push(a[i].name ); 
+                } 
+                console.log(personaggi);
+
+                return personaggi;
+                
+            }
+    
+    }
 });
 
 
 
-
-   

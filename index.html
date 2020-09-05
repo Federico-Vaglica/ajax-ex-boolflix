@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=5, initial-scale=1.0">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'/>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Boolflix</title>
 </head>
 <body>
     <header class='navBar'>
@@ -17,32 +17,38 @@
             <button class='search'>Search</button>
         </div>
     </header>
-    
-    <div class="movies">
-        <div class='movie'></div>
-       
-    </div>
+    <div class='noResult main'></div>
+
+    <div class="movies main"></div>
+   
 
     <!-- Template Handle bars -->
     <script id="day-template" type="text/x-handlebars-template">
-        <ul class="movie">
-            <li class="{{titolo}}" data-complete-date="{{ completeDate }}">Titolo : {{titolo}}</li>
-            <li class="{{titoloOriginale}}">Titolo originale :{{titoloOriginale}}</li>
-            <li class="{{lingua}}">Lingua: {{{lingua}}}</li>
-            <li class="{{voto}}">Voto: {{{voto}}}</li>
-            <li class="{{voto}}">Tipo: {{tipo}}</li>
-        </ul>
+        <div class="movie">
+            <img src="{{poster}}" alt="">
+            <div class="overlay">
+                <ul>
+                    <li class="{{titolo}}" data-complete-date="{{ completeDate }}">Titolo : {{titolo}}</li>
+                    <li class="{{titoloOriginale}}">Titolo originale :{{titoloOriginale}}</li>
+                    <li class="{{lingua}}">Lingua: {{{lingua}}}</li>
+                    <li class="{{voto}}">Voto: {{{voto}}}</li>
+                    <li class="{{voto}}">Tipo: {{tipo}}</li>
+                    <li class="{{personaggi}}">Personaggi: {{personaggi}} </li>
+                    <li class="{{recensione}}">Trama: {{recensione}} </li>
+                </ul>
+            </div>
+        </div>
     </script>
 
 
      <!-- Template Handle bars -->
     <script id="noResults" type="text/x-handlebars-template">
-        <div>{{noResults}}</div>
+        <div class="noResults"><h4>{{noResults}}</h4></div>
     </script>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment-with-locales.min.js"></script>
-    <script src="script3.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
