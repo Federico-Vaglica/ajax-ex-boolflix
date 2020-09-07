@@ -74,7 +74,6 @@ $(document).ready(function(){
             var titolo;
             var titoloOriginale;
             var tipologia;
-            var personaggi;
                 if(tipo === 'tv'){
                     titolo = selezionato.name;
                     titoloOriginale = selezionato.original_name;
@@ -94,7 +93,8 @@ $(document).ready(function(){
                 tipo : tipologia,
                 poster: poster(selezionato.poster_path),
                 recensione: selezionato.overview.substr(0,100),
-                personaggi : getName(tipo,selezionato.id)
+                id: selezionato.id,
+                personaggi : getName(tipo,selezionato.id),
             }
             // console.log(selezionato.id);
             var html = template(thisMovie);
@@ -172,7 +172,7 @@ $(document).ready(function(){
                 'api_key': 'd5e76e32726c06432277b9f07da06085',
             },
             success: function(a){
-                var source = $('#day-template').html();
+                var source = $('#dettagli').html();
                 var template = Handlebars.compile(source);
 
                 var context = {
@@ -180,7 +180,7 @@ $(document).ready(function(){
                 }
 
                 var html = template(context);
-                $('.movies').append(html);
+                $('.lista[data-id="'+id+'"]').find('.personaggi').append(html);
                 
             },
             error: function(){
@@ -194,22 +194,22 @@ $(document).ready(function(){
                 
             
 
-            function ottieniNomi(a){
-                var arrayNomi = [''];
-                if (a.length > 0) {
-                    for (var i = 0; i < 4; i++){
-                        if (a[i] != undefined){
-                            arrayNomi.push(a[i].name);    
-                        } 
+        function ottieniNomi(a){
+            var arrayNomi = [];
+            if (a.length > 0) {
+                for (var i = 0; i < 4; i++){
+                    if (a[i] != undefined){
+                        arrayNomi.push(a[i].name);    
                     } 
-                } else {
-                    return arrayNomi= ['...']
-                }
+                } 
+            } else {
+                return arrayNomi= ['Non dispobibili']
+            }
                 
-                var name = arrayNomi.toString()
-                console.log(name)
-                return name
-            }    
+            var name = arrayNomi.toString()
+            console.log(name)
+            return name
+        }            
 });
 
 

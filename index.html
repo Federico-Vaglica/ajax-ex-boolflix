@@ -25,16 +25,16 @@
     <!-- Template Handle bars -->
     <script id="day-template" type="text/x-handlebars-template">
         <div class="movie">
-            <img src="{{poster}}" alt="">
+            <img src="{{poster}}" alt="{{titolo}}">
             <div class="overlay">
-                <ul>
-                    <li class="{{titolo}}" data-complete-date="{{ completeDate }}">Titolo : {{titolo}}</li>
-                    <li class="{{titoloOriginale}}">Titolo originale :{{titoloOriginale}}</li>
-                    <li class="{{lingua}}">Lingua: {{{lingua}}}</li>
-                    <li class="{{voto}}">Voto: {{{voto}}}</li>
-                    <li class="{{voto}}">Tipo: {{tipo}}</li>
-                    <li class="{{personaggi}}">Personaggi: {{personaggi}} </li>
-                    <li class="{{recensione}}">Trama: {{recensione}} </li>
+                <ul class='lista' data-id="{{id}}">
+                    <li class="{{titolo}} bold" data-complete-date="{{ completeDate }}">Titolo : <span>{{titolo}}</span></li>
+                    <li class="{{titoloOriginale}} bold">Titolo originale :<span>{{titoloOriginale}}</span></li>
+                    <li class="{{lingua}} bold">Lingua: {{{lingua}}}</li>
+                    <li class="{{voto}} bold">Voto: <span class='star'>{{{voto}}}</span></li>
+                    <li class="{{voto}} bold">Tipo: <span>{{tipo}}</span></li>
+                    <li class="personaggi bold"> Personaggi :</li>
+                    <li class="{{recensione}} bold">Trama: <span>{{recensione}}</span> </li>
                 </ul>
             </div>
         </div>
@@ -45,6 +45,15 @@
     <script id="noResults" type="text/x-handlebars-template">
         <div class="noResults"><h4>{{noResults}}</h4></div>
     </script>
+
+    <script id="dettagli" type="text/x-handlebars-template">
+        <span>{{personaggi}}</span>
+    </script>
+
+ 
+    
+
+
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js'></script>

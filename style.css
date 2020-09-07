@@ -143,3 +143,16 @@ ul {
     width :14px;
     height: 14px;
 }
+
+.bold {
+    color : red;
+    font-weight: bolder;
+}
+
+span {
+    color : white;
+}
+
+.star {
+    color: yellow;
+}
