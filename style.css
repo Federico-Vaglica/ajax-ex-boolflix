@@ -35,7 +35,8 @@ ul {
 }
 
 .bookflix{
-    max-height: 90%;
+    height: 70px;
+    width: auto;   
 }
 
 
