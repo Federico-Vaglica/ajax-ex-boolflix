@@ -74,14 +74,17 @@ $(document).ready(function(){
             var titolo;
             var titoloOriginale;
             var tipologia;
+            var personaggi;
                 if(tipo === 'tv'){
                     titolo = selezionato.name;
                     titoloOriginale = selezionato.original_name;
                     tipologia = 'Serie Tv'
+                    
                 } else {
                     titolo = selezionato.title;
                     titoloOriginale = selezionato.original_title;
                     tipologia = "Film";
+                    
                 }                                      
             var thisMovie={
                 titolo: titolo,
@@ -90,8 +93,8 @@ $(document).ready(function(){
                 voto: printStars(selezionato.vote_average),
                 tipo : tipologia,
                 poster: poster(selezionato.poster_path),
-                personaggi: getCharacters(selezionato.id),
                 recensione: selezionato.overview.substr(0,100),
+                personaggi : getName(tipo,selezionato.id)
             }
             // console.log(selezionato.id);
             var html = template(thisMovie);
@@ -161,46 +164,52 @@ $(document).ready(function(){
         return img;
     }
 
-
-    function getCharacters(id){
-        var apiUrl = 'https://api.themoviedb.org/3/';
-        var arrayApiUrl = [
-            {
-                url: apiUrl + 'tv/' + id + '/credits'
+    function getName(tipo,id){
+         $.ajax({
+            url:'https://api.themoviedb.org/3/'+tipo+ '/' + id + '/credits',
+            method: 'GET',
+            data: {
+                'api_key': 'd5e76e32726c06432277b9f07da06085',
             },
-            {
-                url: apiUrl + 'movie/' + id + '/credits'
+            success: function(a){
+                var source = $('#day-template').html();
+                var template = Handlebars.compile(source);
+
+                var context = {
+                    personaggi: ottieniNomi(a.cast)
+                }
+
+                var html = template(context);
+                $('.movies').append(html);
+                
+            },
+            error: function(){
+              console.log('Errore');
             }
-        ];
-            arrayApiUrl.forEach(function(element){
-                $.ajax({
-                    url: element.url,
-                    method: 'GET',
-                    data: {
-                        'api_key': 'd5e76e32726c06432277b9f07da06085',
-                    },
-                    success: function(a){
-                        ottieniNomi(a.cast);
-                    },
-                    error: function(){
-                      console.log('Errore');
-                    }
-                  });
-            });
+          });
+    }
+
+   
+            
+                
+            
 
             function ottieniNomi(a){
-                var personaggi = [];
+                var arrayNomi = [''];
+                if (a.length > 0) {
+                    for (var i = 0; i < 4; i++){
+                        if (a[i] != undefined){
+                            arrayNomi.push(a[i].name);    
+                        } 
+                    } 
+                } else {
+                    return arrayNomi= ['...']
+                }
                 
-                for(var i=1; i< a.length; i++){
-                    personaggi.push(a[i].name ); 
-                } 
-                console.log(personaggi);
-
-                return personaggi;
-                
-            }
-    
-    }
+                var name = arrayNomi.toString()
+                console.log(name)
+                return name
+            }    
 });
 
 
